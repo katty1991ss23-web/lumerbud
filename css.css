@@ -1,0 +1,366 @@
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #1e1e1e;
+
+    /* Сторінка не їздить убік і не «пружинить» (статичний екран).
+       Спочатку hidden для старих браузерів, потім clip для сучасних. */
+    overflow-x: hidden;
+    overflow-x: clip;
+    overscroll-behavior: none;
+}
+
+html {
+    /* Телефон не збільшує текст сам */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+/* Скидаємо будь-які можливі заокруглення */
+html,
+body,
+.dark-block,
+.bg-video {
+    border-radius: 0 !important;
+}
+
+
+/* =========================================================
+   ╔═══════════════════════════════════════════════════════╗
+   ║  ПАНЕЛЬ НАЛАШТУВАНЬ №1 — КОМП'ЮТЕР (ПК)               ║
+   ║  Міняйте тільки тут. На телефон НЕ впливає.           ║
+   ╚═══════════════════════════════════════════════════════╝
+   ========================================================= */
+
+:root {
+
+    /* ---------- ФОТО-ФОН ---------- */
+    --video-w: 100%;           /* ширина фото (100% = на весь блок; 110% = збільшити) */
+    --video-h: 100%;           /* висота фото */
+    --video-top: 50%;          /* позиція зверху (50% = по центру) */
+    --video-x: 0px;            /* зсув: мінус = вліво,  плюс = вправо */
+    --video-y: 0px;            /* зсув: мінус = вгору,  плюс = вниз */
+    --video-fit: cover;        /* cover = заповнює весь блок без розтягування (краї можуть трохи обрізатись);
+                                  contain = видно все фото цілком (по краях можуть бути смуги) */
+    --video-pos: center center;/* яку частину фото тримати в кадрі при обрізанні:
+                                  center center / 50% 30% (вище) / 50% 70% (нижче) / 30% 50% (лівіше) */
+    --video-brightness: 1;     /* ЯСКРАВІСТЬ: 1 = як є, 0.7 = темніше, 0.4 = дуже темно, 1.2 = світліше */
+    --video-contrast: 1;       /* контраст: 1 = як є */
+    --video-saturate: 1;       /* насиченість кольору: 1 = як є, 0 = чорно-біле */
+    --video-blur: 0px;         /* розмиття фону (залиште 0 для чіткого фото) */
+
+    /* ---------- КНОПКА ---------- */
+    --btn-bottom: 60px;        /* відступ шару кнопки від низу */
+    --btn-side: 24px;          /* бокові відступи шару кнопки */
+    --btn-x: 0px;              /* зсув: мінус = вліво,  плюс = вправо */
+    --btn-y: -60px;            /* зсув: мінус = вгору,  плюс = вниз */
+    --btn-w: auto;             /* ширина (auto = за розміром тексту) */
+    --btn-pad-y: 14px;         /* внутрішній відступ зверху / знизу */
+    --btn-pad-x: clamp(40px, 8vw, 120px);   /* внутрішній відступ з боків */
+    --btn-font: 18px;          /* розмір шрифту */
+
+}
+
+
+/* =========================================================
+   ПЛАНШЕТ (769–1024px)
+   Працює як ПК. Відрізняється тільки одним значенням.
+   ========================================================= */
+
+@media (max-width: 1024px) {
+
+    :root {
+        --btn-bottom: 48px;
+    }
+
+}
+
+
+/* =========================================================
+   ╔═══════════════════════════════════════════════════════╗
+   ║  ПАНЕЛЬ НАЛАШТУВАНЬ №2 — ТЕЛЕФОН (до 768px)           ║
+   ║  Міняйте тільки тут. На ПК НЕ впливає.                ║
+   ║  Усі значення прописані окремо, нічого не береться    ║
+   ║  з панелі ПК. Нічого з цього блоку не видаляйте:      ║
+   ║  без рядка телефон візьме значення з ПК.              ║
+   ╚═══════════════════════════════════════════════════════╝
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    :root {
+
+        /* ---------- ФОТО-ФОН (вертикальне фото 56.jpg) ---------- */
+        --video-w: 100%;
+        --video-h: 100%;
+        --video-top: 50%;
+        --video-x: 0px;
+        --video-y: 0px;
+        --video-fit: cover;
+        --video-pos: center center;
+        --video-brightness: 1;     /* ЯСКРАВІСТЬ: 1 = як є, 0.7 = темніше, 0.4 = дуже темно */
+        --video-contrast: 1;
+        --video-saturate: 1;
+        --video-blur: 0px;
+
+        /* ---------- КНОПКА ---------- */
+        --btn-bottom: 54px;
+        --btn-side: 0px;
+        --btn-x: 0px;
+        --btn-y: -60px;
+        --btn-w: 80%;              /* ширина кнопки; можна поставити своє число */
+        --btn-pad-y: 14px;
+        --btn-pad-x: 0px;
+        --btn-font: 16px;
+
+    }
+}
+
+
+/* =========================================================
+   ╔═══════════════════════════════════════════════════════╗
+   ║  ПАНЕЛЬ НАЛАШТУВАНЬ №3 — ТЕЛЕФОН ГОРИЗОНТАЛЬНО        ║
+   ║  Спрацьовує, коли телефон лежить на боці              ║
+   ║  (landscape, висота до 500px, ширина до 1000px).      ║
+   ║  Міняйте тільки тут. На ПК і вертикальний телефон     ║
+   ║  НЕ впливає. Усі значення прописані окремо.           ║
+   ║                                                       ║
+   ║  Одиниці: vw = 1% ширини екрана, vh = 1% висоти.      ║
+   ╚═══════════════════════════════════════════════════════╝
+   ========================================================= */
+
+@media (orientation: landscape) and (max-height: 500px) and (max-width: 1000px) {
+
+    :root {
+
+        /* ---------- ФОТО-ФОН (широке фото p.png) ---------- */
+        --video-w: 100%;
+        --video-h: 100%;
+        --video-top: 50%;
+        --video-x: 0px;
+        --video-y: 0px;
+        --video-fit: cover;
+        --video-pos: center center;
+        --video-brightness: 0.4;   /* ЯСКРАВІСТЬ: 1 = як є, 0.7 = темніше, 0.4 = дуже темно
+                                      (у вас тут стояло 0.4 — залишив; поставте 1, щоб без затемнення) */
+        --video-contrast: 1;
+        --video-saturate: 1;
+        --video-blur: 0px;
+
+        /* ---------- КНОПКА ---------- */
+        --btn-bottom: 16px;
+        --btn-side: 0px;
+        --btn-x: 0px;
+        --btn-y: 0px;
+        --btn-w: auto;
+        --btn-pad-y: 9px;
+        --btn-pad-x: 36px;
+        --btn-font: 14px;
+
+    }
+
+    /* Низький екран: блок рівно на висоту екрана, без мінімуму 500px */
+    body .dark-block {
+        min-height: 0;
+    }
+}
+
+
+/* =========================================================
+   ДАЛІ — САМІ ЕЛЕМЕНТИ. ЧИСЕЛ ТУТ НЕ МІНЯЙТЕ,
+   УСЕ КЕРУЄТЬСЯ З ПАНЕЛЕЙ ВИЩЕ.
+   ========================================================= */
+
+
+/* ---------- ГОЛОВНИЙ БЛОК ---------- */
+
+.dark-block {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    min-height: 500px;
+
+    overflow: hidden;
+    color: #ffffff;
+
+    background-color: #0e363a;   /* видно тільки якщо фото менше за блок */
+}
+
+
+/* ---------- РАМКА ДЛЯ ФОТО (на весь блок) ---------- */
+
+.responsive-picture {
+    position: absolute;
+    inset: 0;
+
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+    z-index: 1;
+}
+
+
+/* ---------- ФОТО-ФОН ---------- */
+
+.bg-video {
+    position: absolute;
+    left: 50%;
+    top: var(--video-top);
+
+    width: var(--video-w);
+    height: var(--video-h);
+    max-width: none;
+    max-height: none;
+
+    transform: translate(
+        calc(-50% + var(--video-x)),
+        calc(-50% + var(--video-y))
+    );
+
+    /* Фото не розтягується: або заповнює блок з обрізанням країв (cover),
+       або показується цілком (contain) */
+    object-fit: var(--video-fit);
+    object-position: var(--video-pos);
+
+    /* Темніше / світліше / контрастніше / розмитіше */
+    filter: brightness(var(--video-brightness))
+            contrast(var(--video-contrast))
+            saturate(var(--video-saturate))
+            blur(var(--video-blur));
+
+    user-select: none;
+    z-index: 1;
+}
+
+
+/* ---------- ШАР З КНОПКОЮ ---------- */
+
+.block-content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    padding: 0 var(--btn-side) var(--btn-bottom);
+
+    pointer-events: none;
+}
+
+
+/* ---------- КНОПКА ---------- */
+
+.btn-cta {
+    pointer-events: auto;
+
+    display: block;
+    width: var(--btn-w);
+
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+
+    background-color: #000000;
+    color: #ffffff;
+    border: 2px solid #5ce1e6;
+
+    font-family: Arial, sans-serif;
+    font-size: var(--btn-font);
+    font-weight: bold;
+    cursor: pointer;
+
+    padding: var(--btn-pad-y) var(--btn-pad-x);
+
+    transform: translate(var(--btn-x), var(--btn-y));
+
+    transition: background-color 0.2s ease,
+                box-shadow 0.2s ease,
+                text-shadow 0.2s ease,
+                transform 0.2s ease;
+}
+
+.btn-cta:hover {
+    background-color: #0b8ba4;
+    box-shadow: 0 0 25px #5ce1e6;
+    text-shadow: 0 0 8px #5ce1e6;
+}
+
+.btn-cta:active {
+    transform: translate(var(--btn-x), var(--btn-y)) scale(0.96);
+    box-shadow: 0 0 15px #5ce1e6;
+}
+
+
+/* ---------- КРУГЛА КНОПКА TELEGRAM (ваша, без змін) ---------- */
+
+.tg-float-btn {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  width: 60px;
+  height: 60px;
+  background-color: #24A1DE;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.tg-float-btn:hover {
+  background-color: #1d8bc3;
+  transform: scale(1.1);
+}
+
+/* ---------- МИГАННЯ КНОПКИ З ІНТЕРВАЛОМ ---------- */
+
+.btn-cta {
+    position: relative;
+    isolation: isolate;     /* власний шар: підсвітка гарантовано над чорним фоном кнопки */
+}
+
+.btn-cta::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #0b8ba4;
+    box-shadow: 0 0 25px #5ce1e6;
+    opacity: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    /* 3.2s = час одного кола (запасне значення, якщо змінної в панелі немає) */
+    animation: btn-flash var(--btn-flash-speed, 3.2s) linear infinite;
+}
+
+@keyframes btn-flash {
+    0%, 21%   { opacity: 0; }
+    25%       { opacity: var(--btn-flash-peak, 1); }
+    36%       { opacity: 0; }
+    71%       { opacity: 0; }
+    75%       { opacity: var(--btn-flash-peak, 1); }
+    86%, 100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn-cta::after {
+        animation: none;
+    }
+}

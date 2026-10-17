@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumirbud</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+
+    <div class="dark-block">
+
+        <!-- ФОТО-ФОН: вертикальне для екранів, що стоять "стовпчиком", широке для решти -->
+        <picture class="responsive-picture">
+
+            <!-- Вертикальне фото: телефон/планшет у вертикальному положенні -->
+            <source
+                media="(orientation: portrait)"
+                srcset="tre/56.jpg"
+            >
+
+            <!-- Широке фото: комп'ютер і телефон на боці -->
+            <img
+                src="tre/p.png"
+                class="bg-video"
+                alt="Інтер'єр вітальні"
+                decoding="async"
+                fetchpriority="high"
+            >
+
+        </picture>
+
+        <!-- КНОПКА ПЕРЕХОДУ НА САЙТ -->
+        <div class="block-content">
+            <a
+                href="https://lumirbud.com.ua/"
+                class="btn-cta"
+            >
+                Перейти на сайт
+            </a>
+        </div>
+
+    </div>
+
+    <!-- TELEGRAM BUTTON -->
+    <a
+        href="https://t.me/lumirbud_ai_bot"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="tg-float-btn"
+        aria-label="Чат у Telegram"
+    >
+        <svg
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M12 0C5.37 0 0 5.37 0 12C0 18.63 5.37 24 12 24C18.63 24 24 18.63 24 12C24 5.37 18.63 0 12 0ZM17.89 8.22L15.91 17.58C15.76 18.26 15.36 18.42 14.79 18.1L11.77 15.87L10.31 17.27C10.15 17.43 10.02 17.57 9.71 17.57L9.93 14.48L15.56 9.39C15.8 9.17 15.51 9.05 15.19 9.26L8.23 13.64L5.24 12.71C4.59 12.51 4.58 12.06 5.38 11.75L17.07 7.24C17.61 7.04 18.09 7.37 17.89 8.22Z"
+                fill="white"
+            />
+        </svg>
+    </a>
+
+</body>
+</html>
