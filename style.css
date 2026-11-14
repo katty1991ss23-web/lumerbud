@@ -1,0 +1,223 @@
+:root {
+    --primary: #22c55e;
+    --primary-hover: #16a34a;
+    --bg-color: #121212;
+    --card-bg: #1a1a1a;
+    --text-main: #e2e8f0;
+    --text-muted: #94a3b8;
+    --border-color: #2a2a2a;
+    --hover-bg: #222222;
+    --green-accent: #22c55e;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.widget {
+    background: var(--card-bg);
+    width: 100%;
+    max-width: 700px;
+    height: 90vh;
+    max-height: 850px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    gap: 14px;
+}
+
+.widget-header {
+    text-align: center;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.widget-header h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: -0.3px;
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    gap: 8px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.2s ease;
+    background: #141414;
+    color: var(--text-main);
+}
+
+.search-input:focus {
+    border-color: var(--green-accent);
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15);
+}
+
+.output-box {
+    flex: 1;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: #141414;
+    padding: 12px;
+}
+
+.section-header {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--green-accent);
+    background: #19231e;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin: 14px 0 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-left: 4px solid var(--green-accent);
+}
+
+.section-header:first-child {
+    margin-top: 0;
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 70px 95px;
+    gap: 10px;
+    align-items: center;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    background: #1a1a1a;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    border-left: 4px solid var(--green-accent);
+    transition: background 0.15s;
+}
+
+.table-row:last-child {
+    margin-bottom: 0;
+}
+
+.table-row:hover {
+    background-color: var(--hover-bg);
+}
+
+.col-name {
+    font-size: 13px;
+    color: var(--text-main);
+}
+
+.col-unit {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+    background: #121212;
+    border: 1px solid var(--border-color);
+    padding: 4px 6px;
+    border-radius: 6px;
+}
+
+.col-price {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--green-accent);
+    text-align: right;
+    white-space: nowrap;
+}
+
+mark {
+    background-color: rgba(34, 197, 94, 0.2);
+    color: #4ade80;
+    padding: 0 2px;
+    border-radius: 2px;
+}
+
+.placeholder-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: var(--text-muted);
+    font-size: 14px;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 8px;
+    }
+
+    .widget {
+        height: calc(100vh - 16px);
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .table-row {
+        grid-template-columns: minmax(0, 1fr) 60px 85px;
+        gap: 6px;
+        padding: 10px 10px;
+    }
+
+    .col-name {
+        font-size: 12px;
+    }
+
+    .col-unit {
+        font-size: 11px;
+    }
+
+    .col-price {
+        font-size: 12px;
+    }
+
+    .section-header {
+        font-size: 12px;
+    }
+}.widget-header {
+    position: relative;
+    text-align: center;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.back-btn {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: color 0.15s ease;
+}
+
+.back-btn:hover {
+    color: var(--green-accent);
+}
